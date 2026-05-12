@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AURUM — Luxury Timepieces</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-logo">AURUM</div>
+    <div class="loader-line"><span></span></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">AURUM</div>
+    <ul class="nav-links">
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#featured">Featured</a></li>
+      <li><a href="#heritage">Heritage</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" title="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="icon-btn" id="cartToggle" title="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-btn" id="menuToggle">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#collections" onclick="closeMobileMenu()">Collections</a></li>
+      <li><a href="#featured" onclick="closeMobileMenu()">Featured</a></li>
+      <li><a href="#heritage" onclick="closeMobileMenu()">Heritage</a></li>
+      <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">✕</button>
+    <div class="search-inner">
+      <p class="search-label">SEARCH TIMEPIECES</p>
+      <input type="text" id="searchInput" placeholder="e.g. Chronograph, Gold, Sport..." />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Selection</h3>
+      <button id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb orb1"></div>
+      <div class="hero-orb orb2"></div>
+      <div class="hero-grain"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Maison de Haute Horlogerie</p>
+      <h1 class="hero-title">
+        Time is the<br/>
+        <em>ultimate</em><br/>
+        luxury.
+      </h1>
+      <p class="hero-sub">Handcrafted Swiss movements. Timeless design. Worn by those who understand that every second matters.</p>
+      <div class="hero-cta">
+        <a href="#collections" class="btn-primary">Explore Collection</a>
+        <a href="#featured" class="btn-ghost">View Lookbook</a>
+      </div>
+    </div>
+    <div class="hero-watch-display">
+      <div class="watch-showcase">
+        <div class="watch-ring ring1"></div>
+        <div class="watch-ring ring2"></div>
+        <div class="watch-ring ring3"></div>
+        <div class="watch-face">
+          <div class="watch-dial">
+            <div class="watch-hour-markers"></div>
+            <div class="watch-hand hour-hand" id="hourHand"></div>
+            <div class="watch-hand minute-hand" id="minuteHand"></div>
+            <div class="watch-hand second-hand" id="secondHand"></div>
+            <div class="watch-center"></div>
+            <div class="watch-brand-text">AURUM</div>
+            <div class="watch-swiss-text">SWISS MADE</div>
+          </div>
+        </div>
+        <div class="watch-crown"></div>
+        <div class="watch-lug lug-tl"></div>
+        <div class="watch-lug lug-tr"></div>
+        <div class="watch-lug lug-bl"></div>
+        <div class="watch-lug lug-br"></div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="stats-band">
+    <div class="stat-item"><span class="stat-num">1847</span><span class="stat-label">Founded</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><span class="stat-num">180+</span><span class="stat-label">Unique Pieces</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><span class="stat-num">42</span><span class="stat-label">Master Watchmakers</span></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><span class="stat-num">97%</span><span class="stat-label">Client Satisfaction</span></div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section class="collections" id="collections">
+    <div class="section-header">
+      <p class="section-eyebrow">Our Ateliers</p>
+      <h2 class="section-title">Collections</h2>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="sport">Sport</button>
+      <button class="filter-btn" data-filter="dress">Dress</button>
+      <button class="filter-btn" data-filter="classic">Classic</button>
+      <button class="filter-btn" data-filter="limited">Limited Edition</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- FEATURED BANNER -->
+  <section class="featured-banner" id="featured">
+    <div class="featured-content">
+      <p class="section-eyebrow">Piece of the Season</p>
+      <h2>The Perpetuelle<br/><em>Noir Edition</em></h2>
+      <p>A masterpiece of complexity. 847 hand-finished components. Perpetual calendar with moonphase indication. Only 25 pieces worldwide.</p>
+      <div class="featured-price">₹28,50,000</div>
+      <button class="btn-primary" onclick="addToCartById('w-noir')">Add to Selection — ₹28,50,000</button>
+    </div>
+    <div class="featured-visual">
+      <div class="featured-watch">
+        <div class="fw-outer"></div>
+        <div class="fw-middle"></div>
+        <div class="fw-inner">
+          <div class="fw-dial">
+            <div class="fw-hand fwh"></div>
+            <div class="fw-hand fwm"></div>
+            <div class="fw-center"></div>
+            <div class="fw-text">PERPETUELLE</div>
+            <div class="fw-sub">NOIR EDITION</div>
+            <div class="fw-moon">🌙</div>
+          </div>
+        </div>
+        <div class="fw-crown"></div>
+      </div>
+      <div class="featured-badge">N°14 / 25</div>
+    </div>
+  </section>
+
+  <!-- HERITAGE -->
+  <section class="heritage" id="heritage">
+    <div class="heritage-text">
+      <p class="section-eyebrow">Since 1847</p>
+      <h2 class="section-title">Crafted with<br/><em>devotion</em></h2>
+      <p>Every AURUM timepiece is born in our atelier in Le Brassus, Switzerland. Our master watchmakers spend an average of 600 hours on each movement — perfecting, polishing, and breathing life into mechanical poetry.</p>
+      <p>We use only the rarest materials: Meteorite dials, alligator straps, sapphire crystals ground to 0.001mm tolerance.</p>
+      <a href="#collections" class="btn-ghost">Discover the Craft</a>
+    </div>
+    <div class="heritage-grid">
+      <div class="hg-card hg1">
+        <div class="hg-icon">⚙️</div>
+        <h4>600+ Hours</h4>
+        <p>Spent on each movement</p>
+      </div>
+      <div class="hg-card hg2">
+        <div class="hg-icon">💎</div>
+        <h4>Meteorite Dials</h4>
+        <p>From Gibeon iron meteorite</p>
+      </div>
+      <div class="hg-card hg3">
+        <div class="hg-icon">🔬</div>
+        <h4>0.001mm</h4>
+        <p>Crystal grinding precision</p>
+      </div>
+      <div class="hg-card hg4">
+        <div class="hg-icon">🏔️</div>
+        <h4>Le Brassus</h4>
+        <p>Swiss Alps atelier</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header">
+      <p class="section-eyebrow">Voices</p>
+      <h2 class="section-title">Our Clients Say</h2>
+    </div>
+    <div class="testimonials-track" id="testimonialsTrack">
+      <div class="testimonial-card">
+        <p>"A watch unlike anything I have ever worn. The dial alone is worth the price — I lose myself staring at it."</p>
+        <div class="t-author">— Arjun Mehta, Mumbai</div>
+        <div class="t-stars">★★★★★</div>
+      </div>
+      <div class="testimonial-card">
+        <p>"AURUM craftsmanship is extraordinary. I bought the Classique and three colleagues asked where to buy one within a week."</p>
+        <div class="t-author">— Priya Sharma, Delhi</div>
+        <div class="t-stars">★★★★★</div>
+      </div>
+      <div class="testimonial-card">
+        <p>"The packaging, the certificate, the after-sale service — every detail is curated to perfection. Truly a luxury experience."</p>
+        <div class="t-author">— Rahul Singhania, Bengaluru</div>
+        <div class="t-stars">★★★★★</div>
+      </div>
+      <div class="testimonial-card">
+        <p>"I inherited a love of fine watches from my father. AURUM is the first brand that makes me feel I am carrying that heritage."</p>
+        <div class="t-author">— Kavita Nair, Chennai</div>
+        <div class="t-stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="testimonial-dots" id="testimonialDots"></div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="newsletter-inner">
+      <p class="section-eyebrow">Join the Inner Circle</p>
+      <h2>Private Previews.<br/>Early Access.<br/><em>Exceptional Offers.</em></h2>
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note">Reserved for connoisseurs. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">AURUM</div>
+        <p>Maison de Haute Horlogerie<br/>Est. 1847 — Le Brassus, Switzerland</p>
+      </div>
+      <div class="footer-links">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="#">Sport Series</a></li>
+          <li><a href="#">Dress Watches</a></li>
+          <li><a href="#">Classic Line</a></li>
+          <li><a href="#">Limited Editions</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Bespoke Orders</a></li>
+          <li><a href="#">Watch Servicing</a></li>
+          <li><a href="#">Certification</a></li>
+          <li><a href="#">Trade-In</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Maison</h4>
+        <p>+91 99999 88888</p>
+        <p>atelier@aurum.com</p>
+        <p>Mumbai · Delhi · Bengaluru</p>
+        <div class="social-links">
+          <a href="#">IG</a>
+          <a href="#">FB</a>
+          <a href="#">TW</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AURUM Haute Horlogerie. All rights reserved.</p>
+      <p><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Shipping Policy</a></p>
+    </div>
+  </footer>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-overlay" id="checkoutOverlay"></div>
+  <div class="checkout-modal" id="checkoutModal">
+    <button class="checkout-close" id="checkoutClose">&#x2715;</button>
+
+    <!-- STEP 1: Form -->
+    <div id="checkoutStep1">
+      <div class="checkout-header">
+        <p class="checkout-eyebrow">Secure Boutique Checkout</p>
+        <h2 class="checkout-title">Your Details</h2>
+        <div class="checkout-progress">
+          <div class="cp-step cp-active"><span>1</span> Details</div>
+          <div class="cp-line"></div>
+          <div class="cp-step"><span>2</span> Receipt</div>
+        </div>
+      </div>
+      <div class="checkout-body">
+        <!-- Left: order summary -->
+        <div class="checkout-left">
+          <div class="cl-label">Order Summary</div>
+          <div id="checkoutOrderSummary" class="checkout-order-summary"></div>
+          <div class="checkout-order-total">
+            <span>Total</span>
+            <span id="checkoutTotalDisplay"></span>
+          </div>
+          <div class="checkout-coupon-row">
+            <input type="text" id="couponInput" placeholder="Coupon code (e.g. AURUM10)" />
+            <button id="couponApplyBtn" onclick="applyCoupon()">Apply</button>
+          </div>
+          <div id="couponMsg" class="coupon-msg"></div>
+          <div class="checkout-secure-note">&#x1F512; SSL encrypted &middot; Concierge within 2 hrs</div>
+        </div>
+        <!-- Right: form -->
+        <div class="checkout-right">
+          <div class="cf-section-label">Personal Information</div>
+          <div class="cf-row">
+            <div class="cf-field">
+              <label>First Name <span class="cf-req">*</span></label>
+              <input type="text" id="cfFirstName" placeholder="Arjun" />
+              <span class="cf-error" id="errFirstName"></span>
+            </div>
+            <div class="cf-field">
+              <label>Last Name <span class="cf-req">*</span></label>
+              <input type="text" id="cfLastName" placeholder="Mehta" />
+              <span class="cf-error" id="errLastName"></span>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label>Email Address <span class="cf-req">*</span></label>
+            <input type="email" id="cfEmail" placeholder="arjun@example.com" />
+            <span class="cf-error" id="errEmail"></span>
+          </div>
+          <div class="cf-field">
+            <label>Phone Number <span class="cf-req">*</span></label>
+            <input type="tel" id="cfPhone" placeholder="+91 98765 43210" />
+            <span class="cf-error" id="errPhone"></span>
+          </div>
+          <div class="cf-section-label" style="margin-top:18px">Shipping Address</div>
+          <div class="cf-field">
+            <label>Street Address <span class="cf-req">*</span></label>
+            <input type="text" id="cfAddress" placeholder="12, Marine Drive" />
+            <span class="cf-error" id="errAddress"></span>
+          </div>
+          <div class="cf-row">
+            <div class="cf-field">
+              <label>City <span class="cf-req">*</span></label>
+              <input type="text" id="cfCity" placeholder="Mumbai" />
+              <span class="cf-error" id="errCity"></span>
+            </div>
+            <div class="cf-field">
+              <label>PIN Code <span class="cf-req">*</span></label>
+              <input type="text" id="cfPin" placeholder="400001" maxlength="6" />
+              <span class="cf-error" id="errPin"></span>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label>State <span class="cf-req">*</span></label>
+            <select id="cfState">
+              <option value="">Select State</option>
+              <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option>
+              <option>Tamil Nadu</option><option>Gujarat</option><option>Rajasthan</option>
+              <option>West Bengal</option><option>Telangana</option><option>Kerala</option>
+              <option>Punjab</option><option>Uttar Pradesh</option><option>Other</option>
+            </select>
+            <span class="cf-error" id="errState"></span>
+          </div>
+          <div class="cf-section-label" style="margin-top:18px">Payment Method</div>
+          <div class="cf-payment-options">
+            <label class="cf-payment-opt">
+              <input type="radio" name="cfPayment" value="card" checked />
+              <span class="cf-radio-box"><span>&#x1F4B3;</span><span>Card</span></span>
+            </label>
+            <label class="cf-payment-opt">
+              <input type="radio" name="cfPayment" value="upi" />
+              <span class="cf-radio-box"><span>&#x1F4F1;</span><span>UPI</span></span>
+            </label>
+            <label class="cf-payment-opt">
+              <input type="radio" name="cfPayment" value="bank" />
+              <span class="cf-radio-box"><span>&#x1F3E6;</span><span>Bank Transfer</span></span>
+            </label>
+          </div>
+          <button class="cf-submit-btn" id="cfSubmitBtn" onclick="placeOrder()">
+            <span id="cfSubmitLabel">Place Order</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Receipt -->
+    <div id="checkoutStep2" style="display:none">
+      <div class="receipt-wrapper">
+        <div class="receipt-card" id="receiptCard">
+          <!-- Receipt Header -->
+          <div class="receipt-header">
+            <div class="receipt-logo">AURUM</div>
+            <div class="receipt-tagline">Maison de Haute Horlogerie &bull; Est. 1847</div>
+            <div class="receipt-badge">&#x2714; Order Confirmed</div>
+          </div>
+          <!-- Order Meta -->
+          <div class="receipt-meta">
+            <div class="receipt-meta-col">
+              <div class="rm-label">Order Reference</div>
+              <div class="rm-value" id="rcOrderId"></div>
+            </div>
+            <div class="receipt-meta-col">
+              <div class="rm-label">Date &amp; Time</div>
+              <div class="rm-value" id="rcDateTime"></div>
+            </div>
+            <div class="receipt-meta-col">
+              <div class="rm-label">Payment Method</div>
+              <div class="rm-value" id="rcPayment"></div>
+            </div>
+          </div>
+          <!-- Customer Info -->
+          <div class="receipt-section">
+            <div class="receipt-section-title">Billed To</div>
+            <div class="receipt-customer" id="rcCustomer"></div>
+          </div>
+          <!-- Items Table -->
+          <div class="receipt-section">
+            <div class="receipt-section-title">Items</div>
+            <table class="receipt-table">
+              <thead>
+                <tr><th>Timepiece</th><th>Ref.</th><th>Amount</th></tr>
+              </thead>
+              <tbody id="rcItemsBody"></tbody>
+            </table>
+          </div>
+          <!-- Totals -->
+          <div class="receipt-totals" id="rcTotals"></div>
+          <!-- Footer -->
+          <div class="receipt-footer">
+            <p>Thank you for choosing AURUM. Our concierge will contact you within 2 hours.</p>
+            <p>atelier@aurum.com &nbsp;&bull;&nbsp; +91 99999 88888 &nbsp;&bull;&nbsp; Mumbai &middot; Delhi &middot; Bengaluru</p>
+            <div class="receipt-footer-logo">AURUM</div>
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="receipt-actions">
+          <button class="receipt-btn receipt-btn-print" onclick="printReceipt()">
+            &#x1F5A8; Print Receipt
+          </button>
+        
